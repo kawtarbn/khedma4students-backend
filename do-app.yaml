@@ -1,0 +1,30 @@
+name: khedma4students-backend
+
+# Laravel buildpack configuration
+build:
+  # Install dependencies
+  - type: script
+    script: |
+      composer install --no-dev --optimize-autoloader
+      
+  # Generate app key
+  - type: script
+    script: |
+      php artisan key:generate --force
+      
+  # Run migrations
+  - type: script
+    script: |
+      php artisan migrate --force
+      
+  # Cache config and routes
+  - type: script
+    script: |
+      php artisan config:cache
+      php artisan route:cache
+
+# Run configuration
+run:
+  # Start Laravel server
+  command: |
+    php artisan serve --host=0.0.0.0 --port=8080
