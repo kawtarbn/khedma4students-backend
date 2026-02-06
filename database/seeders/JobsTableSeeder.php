@@ -1,0 +1,147 @@
+<?php
+
+namespace Database\Seeders;
+
+use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
+
+class JobsTableSeeder extends Seeder
+{
+    public function run(): void
+    {
+        $jobs = [
+            [
+                'title' => 'Full Stack Web Developer',
+                'description' => 'Looking for an experienced full stack developer to join our team. You will work on various web applications using Laravel, React, and Vue.js. Experience with RESTful APIs and modern JavaScript frameworks is required.',
+                'category' => 'Digital & Freelance',
+                'city' => 'Algiers',
+                'pay_range' => '80,000 - 120,000 DZD/month',
+                'contactEmail' => 'careers@techcorp.dz',
+                'contactPhone' => '0211234567',
+                'employer_id' => 1,
+                'status' => 'Active',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'title' => 'Mobile App Developer (Flutter)',
+                'description' => 'We need a skilled Flutter developer to create cross-platform mobile applications for our educational platform. Experience with Firebase, REST APIs, and mobile UI/UX design is essential.',
+                'category' => 'Digital & Freelance',
+                'city' => 'Algiers',
+                'pay_range' => '70,000 - 100,000 DZD/month',
+                'contactEmail' => 'hiring@educationfirst.dz',
+                'contactPhone' => '0319876543',
+                'employer_id' => 2,
+                'status' => 'Active',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'title' => 'Content Writer & Social Media Manager',
+                'description' => 'Creative content writer needed for our digital marketing agency. Must have excellent writing skills in both English and French, experience with SEO, and knowledge of social media platforms.',
+                'category' => 'Digital & Freelance',
+                'city' => 'Oran',
+                'pay_range' => '40,000 - 60,000 DZD/month',
+                'contactEmail' => 'careers@mediaplus.dz',
+                'contactPhone' => '0412345678',
+                'employer_id' => 3,
+                'status' => 'Active',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'title' => 'Video Editor & Content Creator',
+                'description' => 'Talented video editor needed for creating promotional content for our clients. Must be proficient in Adobe Premiere Pro, After Effects, and have experience with motion graphics and animation.',
+                'category' => 'Digital & Freelance',
+                'city' => 'Constantine',
+                'pay_range' => '50,000 - 80,000 DZD/month',
+                'contactEmail' => 'creative@retailmax.dz',
+                'contactPhone' => '0381234567',
+                'employer_id' => 4,
+                'status' => 'Active',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'title' => 'Mathematics Tutor',
+                'description' => 'Experienced mathematics tutor needed for high school and university students. Must have strong knowledge of algebra, calculus, and standardized test preparation. Flexible hours available.',
+                'category' => 'Education & Tutoring',
+                'city' => 'Annaba',
+                'pay_range' => '30,000 - 50,000 DZD/month',
+                'contactEmail' => 'tutor@educationfirst.dz',
+                'contactPhone' => '0381234567',
+                'employer_id' => 2,
+                'status' => 'Active',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'title' => 'Graphic Designer',
+                'description' => 'Creative graphic designer needed for branding and marketing materials. Must be proficient in Adobe Creative Suite, have a strong portfolio, and understand current design trends.',
+                'category' => 'Digital & Freelance',
+                'city' => 'Tlemcen',
+                'pay_range' => '45,000 - 75,000 DZD/month',
+                'contactEmail' => 'design@healthcare.dz',
+                'contactPhone' => '0431234567',
+                'employer_id' => 5,
+                'status' => 'Active',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'title' => 'Data Entry Specialist',
+                'description' => 'Detail-oriented data entry professional needed for our financial services company. Must have excellent typing speed, accuracy, and experience with Microsoft Office Suite.',
+                'category' => 'Service & Delivery',
+                'city' => 'Blida',
+                'pay_range' => '25,000 - 40,000 DZD/month',
+                'contactEmail' => 'admin@financehub.dz',
+                'contactPhone' => '0251234567',
+                'employer_id' => 7,
+                'status' => 'Active',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'title' => 'Photography Assistant',
+                'description' => 'Photography assistant needed for events and product photography. Must have experience with DSLR cameras, lighting equipment, and photo editing software.',
+                'category' => 'Events & Temporary Work',
+                'city' => 'Béjaïa',
+                'pay_range' => '35,000 - 55,000 DZD/month',
+                'contactEmail' => 'photo@logisticspro.dz',
+                'contactPhone' => '0341234567',
+                'employer_id' => 6,
+                'status' => 'Active',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'title' => 'Translation Services',
+                'description' => 'Professional translator needed for technical documents and creative content. Must be fluent in English, French, and Arabic with attention to cultural nuances.',
+                'category' => 'Service & Delivery',
+                'city' => 'Béjaïa',
+                'pay_range' => '40,000 - 70,000 DZD/month',
+                'contactEmail' => 'translate@financehub.dz',
+                'contactPhone' => '0341234567',
+                'employer_id' => 7,
+                'status' => 'Active',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'title' => 'Virtual Assistant',
+                'description' => 'Organized virtual assistant needed for administrative support tasks. Must have excellent communication skills, time management abilities, and experience with office software.',
+                'category' => 'Service & Delivery',
+                'city' => 'Algiers',
+                'pay_range' => '30,000 - 50,000 DZD/month',
+                'contactEmail' => 'admin@techcorp.dz',
+                'contactPhone' => '0211234567',
+                'employer_id' => 1,
+                'status' => 'Active',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ]
+        ];
+
+        DB::table('jobs')->insert($jobs);
+    }
+}

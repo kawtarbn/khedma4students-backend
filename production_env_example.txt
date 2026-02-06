@@ -1,0 +1,38 @@
+# PRODUCTION EMAIL CONFIGURATION
+# Copy these lines to your .env file for real email sending
+
+# OPTION 1: SENDGRID (RECOMMENDED)
+MAIL_MAILER=sendgrid
+SENDGRID_API_KEY=your-sendgrid-api-key-here
+MAIL_FROM_ADDRESS="noreply@khedma4students.com"
+MAIL_FROM_NAME="${APP_NAME}"
+
+# OPTION 2: GMAIL (FREE STARTER)
+# MAIL_MAILER=smtp
+# MAIL_HOST=smtp.gmail.com
+# MAIL_PORT=587
+# MAIL_USERNAME=khedma4students@gmail.com
+# MAIL_PASSWORD=your-16-character-app-password
+# MAIL_ENCRYPTION=tls
+# MAIL_FROM_ADDRESS="khedma4students@gmail.com"
+# MAIL_FROM_NAME="${APP_NAME}"
+
+# OPTION 3: MAILGUN
+# MAIL_MAILER=mailgun
+# MAIL_MAILGUN_DOMAIN=sandbox123.mailgun.org
+# MAIL_MAILGUN_SECRET=your-mailgun-key
+# MAIL_FROM_ADDRESS="noreply@khedma4students.com"
+# MAIL_FROM_NAME="${APP_NAME}"
+
+# PRODUCTION SETTINGS
+APP_ENV=production
+APP_DEBUG=false
+APP_URL=https://your-domain.com
+
+# DATABASE (PRODUCTION)
+DB_CONNECTION=mysql
+DB_HOST=your-production-db-host
+DB_PORT=3306
+DB_DATABASE=khedma4students_prod
+DB_USERNAME=your-db-username
+DB_PASSWORD=your-db-password
