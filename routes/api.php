@@ -22,6 +22,7 @@ use App\Http\Controllers\VerificationController;
 use App\Http\Controllers\SequenceFixController;
 use App\Http\Controllers\RequestDebugController;
 use App\Http\Controllers\DatabaseRecreateController;
+use App\Http\Controllers\EmptyDatabaseController;
 
 // Health check
 Route::get('/health', function () {
@@ -142,4 +143,7 @@ Route::get('/debug-request-info', [RequestDebugController::class, 'testRequest']
 
 // Database recreate route
 Route::get('/recreate-database', [DatabaseRecreateController::class, 'recreateDatabase']);
+
+// Empty database route
+Route::get('/create-empty-database', [EmptyDatabaseController::class, 'createEmptyDatabase']);
 Route::put('/applications/{id}/status', [ApplicationController::class, 'updateStatus']);
