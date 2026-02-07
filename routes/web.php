@@ -3,6 +3,16 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\DB;
 
+// Simple test route (no database)
+Route::get('/simple-test', function () {
+    return response()->json([
+        'status' => 'working',
+        'message' => 'Backend is running without database',
+        'timestamp' => now(),
+        'version' => '1.0.0'
+    ]);
+});
+
 // Debug route (no /api prefix). Helps confirm the backend instance.
 Route::get('/ping', function () {
     return response()->json([
