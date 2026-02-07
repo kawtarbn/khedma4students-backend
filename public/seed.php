@@ -4,15 +4,15 @@
 header('Content-Type: application/json');
 
 try {
-    require_once __DIR__ . '/vendor/autoload.php';
-    $app = require_once __DIR__ . '/bootstrap/app.php';
+    require_once __DIR__ . '/../vendor/autoload.php';
+    $app = require_once __DIR__ . '/../bootstrap/app.php';
     $kernel = $app->make(Illuminate\Contracts\Console\Kernel::class);
     $kernel->bootstrap();
     
     // Check if this is a seeding request
     if ($_GET['action'] === 'seed') {
         // Include the seeding logic
-        include __DIR__ . '/manual_seed.php';
+        include __DIR__ . '/../manual_seed.php';
         exit;
     }
     
