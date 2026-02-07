@@ -25,6 +25,7 @@ use App\Http\Controllers\DatabaseRecreateController;
 use App\Http\Controllers\EmptyDatabaseController;
 use App\Http\Controllers\DebugStudentsController;
 use App\Http\Controllers\ForceClearController;
+use App\Http\Controllers\OnDemandVerificationController;
 
 // Health check
 Route::get('/health', function () {
@@ -154,4 +155,8 @@ Route::get('/debug-students', [DebugStudentsController::class, 'debugStudents'])
 
 // Force clear all data route
 Route::get('/force-clear-all', [ForceClearController::class, 'forceClearAll']);
+
+// On-demand verification routes
+Route::post('/generate-new-verification-code', [OnDemandVerificationController::class, 'generateNewCode']);
+Route::get('/get-latest-verification-code', [OnDemandVerificationController::class, 'getLatestCode']);
 Route::put('/applications/{id}/status', [ApplicationController::class, 'updateStatus']);
