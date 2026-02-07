@@ -9,6 +9,8 @@ use App\Http\Controllers\StaticReviewsController;
 use App\Http\Controllers\DebugValidationController;
 use App\Http\Controllers\SimpleStudentController;
 use App\Http\Controllers\DirectEmailController;
+use App\Http\Controllers\SimpleJobController;
+use App\Http\Controllers\SimpleServiceController;
 use App\Http\Controllers\RequestController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\SuccessStoryController;
@@ -43,8 +45,8 @@ Route::get('/health', function () {
     ]);
 });
 
-Route::get('/services', [ServiceController::class, 'index']);
-Route::get('/services/{id}', [ServiceController::class, 'show']);
+Route::get('/services', [SimpleServiceController::class, 'index']);
+Route::get('/services/{id}', [SimpleServiceController::class, 'show']);
 
 
 // Student routes
@@ -69,9 +71,9 @@ Route::get('/employers/{id}/jobs', [EmployerController::class, 'getJobs']);
 Route::get('/employers/{id}/applications', [EmployerController::class, 'getApplications']);
 
 //Job routes 
-Route::get('/jobs', [JobController::class, 'index']);
-Route::post('/jobs', [JobController::class, 'store']);
-Route::get('/jobs/{id}', [JobController::class, 'show']);
+Route::get('/jobs', [SimpleJobController::class, 'index']);
+Route::post('/jobs', [SimpleJobController::class, 'store']);
+Route::get('/jobs/{id}', [SimpleJobController::class, 'show']);
 Route::put('/jobs/{id}', [JobController::class, 'update']);
 Route::delete('/jobs/{id}', [JobController::class, 'destroy']);
 
