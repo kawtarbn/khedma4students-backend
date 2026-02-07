@@ -36,6 +36,17 @@ COPY composer.json ./
 # Install dependencies
 RUN composer install --no-dev --optimize-autoloader --no-interaction
 
+# Create .env file from environment variables
+RUN echo "APP_ENV=production" > .env && \
+    echo "APP_DEBUG=false" >> .env && \
+    echo "APP_URL=https://khedma4students-backend.onrender.com" >> .env && \
+    echo "DB_CONNECTION=pgsql" >> .env && \
+    echo "DB_HOST=\${DB_HOST}" >> .env && \
+    echo "DB_PORT=5432" >> .env && \
+    echo "DB_DATABASE=\${DB_DATABASE}" >> .env && \
+    echo "DB_USERNAME=\${DB_USERNAME}" >> .env && \
+    echo "DB_PASSWORD=\${DB_PASSWORD}" >> .env
+
 # Generate app key
 RUN php artisan key:generate --force
 
