@@ -39,5 +39,12 @@ fi
 echo "Running database migrations..."
 php artisan migrate --force
 
+# Check if database is empty and seed it
+STUDENT_COUNT=$(php artisan tinker --execute="echo DB::table('students')->count();" 2>/dev/null)
+if [ "$STUDENT_COUNT" -eq 0 ]; then
+    echo "Database is empty, seeding sample data..."
+    php seed_production.php
+fi
+
 echo "Starting Laravel application..."
 php artisan serve --host=0.0.0.0 --port=8080
