@@ -42,6 +42,24 @@ Route::get('/ping', function () {
     ]);
 });
 
+// Manual migration route
+Route::get('/run-migrations', function () {
+    try {
+        \Artisan::call('migrate', ['--force' => true]);
+        return response()->json([
+            'success' => true,
+            'message' => 'Migrations completed successfully',
+            'output' => \Artisan::output()
+        ]);
+    } catch (\Exception $e) {
+        return response()->json([
+            'success' => false,
+            'message' => 'Migration failed',
+            'error' => $e->getMessage()
+        ], 500);
+    }
+});
+
 // Error logging route
 Route::get('/error-log', function () {
     $logFile = storage_path('logs/laravel.log');
