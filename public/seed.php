@@ -10,9 +10,9 @@ try {
     $kernel->bootstrap();
     
     // Check if this is a seeding request
-    if ($_GET['action'] === 'seed') {
+    if (isset($_GET['action']) && $_GET['action'] === 'seed') {
         // Include the seeding logic
-        include __DIR__ . '/../manual_seed.php';
+        include __DIR__ . '/simple_seed.php';
         exit;
     }
     
