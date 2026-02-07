@@ -14,6 +14,7 @@ use App\Http\Controllers\ApplicationController;
 use App\Http\Controllers\HiringRequestController;
 use App\Http\Controllers\StudentPasswordResetController;
 use App\Http\Controllers\EmployerPasswordResetController;
+use App\Http\Controllers\SeederController;
 
 // Health check
 Route::get('/health', function () {
@@ -101,4 +102,7 @@ Route::post('/applications', [ApplicationController::class, 'store']);
 Route::get('/applications/{id}', [ApplicationController::class, 'show']);
 Route::put('/applications/{id}', [ApplicationController::class, 'update']);
 Route::delete('/applications/{id}', [ApplicationController::class, 'destroy']);
+
+// Database seeding route
+Route::get('/seed-production', [SeederController::class, 'seedProduction']);
 Route::put('/applications/{id}/status', [ApplicationController::class, 'updateStatus']);
