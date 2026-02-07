@@ -5,6 +5,7 @@ use App\Http\Controllers\StudentController;
 use App\Http\Controllers\CompleteResetController;
 use App\Http\Controllers\FinalFixController;
 use App\Http\Controllers\SimpleReviewsController;
+use App\Http\Controllers\StaticReviewsController;
 use App\Http\Controllers\RequestController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\SuccessStoryController;
@@ -78,8 +79,8 @@ Route::get('/requests/{id}', [RequestController::class, 'show']);
 Route::put('/requests/{id}', [RequestController::class, 'update']);
 Route::delete('/requests/{id}', [RequestController::class, 'destroy']);
 
-Route::post('/reviews', [SimpleReviewsController::class, 'store']);
-Route::get('/reviews', [SimpleReviewsController::class, 'index']);
+Route::post('/reviews', [StaticReviewsController::class, 'store']);
+Route::get('/reviews', [StaticReviewsController::class, 'index']);
 
 Route::get('/success-stories', [SuccessStoryController::class, 'index']);
 
