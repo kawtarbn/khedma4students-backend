@@ -58,13 +58,18 @@ class StudentController extends Controller
         ]);
 
         // Store verification code in password_resets table for email verification
-        DB::table('password_resets')->insert([
-            'email' => $request->email,
-            'token' => $verificationToken,
-            'verification_code' => $verificationCode,
-            'created_at' => Carbon::now(),
-            'code_expires_at' => Carbon::now()->addMinutes(30),
-        ]);
+        try {
+            DB::table('password_resets')->insert([
+                'email' => $request->email,
+                'token' => $verificationToken,
+                'verification_code' => $verificationCode,
+                'created_at' => Carbon::now(),
+                'code_expires_at' => Carbon::now()->addMinutes(30),
+            ]);
+        } catch (\Exception $e) {
+            // If password_resets table doesn't exist, continue without storing verification code
+            \Log::error('Failed to store verification code: ' . $e->getMessage());
+        }
 
         // Send verification email
         try {
