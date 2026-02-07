@@ -13,6 +13,7 @@ use App\Http\Controllers\SimpleJobController;
 use App\Http\Controllers\SimpleServiceController;
 use App\Http\Controllers\StaticJobController;
 use App\Http\Controllers\StaticServiceController;
+use App\Http\Controllers\TestProfileController;
 use App\Http\Controllers\RequestController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\SuccessStoryController;
@@ -153,6 +154,10 @@ Route::post('/simple-register', [SimpleStudentController::class, 'store']);
 // Direct email test routes
 Route::get('/test-direct-email', [DirectEmailController::class, 'testDirectEmail']);
 Route::post('/send-verification-email', [DirectEmailController::class, 'sendVerificationEmail']);
+
+// Test profile routes
+Route::get('/test-profile-save', [TestProfileController::class, 'testProfileSave']);
+Route::get('/get-latest-student', [TestProfileController::class, 'getLatestStudent']);
 
 // Verification routes
 Route::get('/get-verification-code', [VerificationController::class, 'getVerificationCode']);
