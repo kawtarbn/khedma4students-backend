@@ -30,8 +30,21 @@ COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 # Copy application code first
 COPY . .
 
-# Copy .env.example to .env if it exists
-COPY .env.example .env
+# Create .env file that will be overridden by Render environment variables
+RUN echo "APP_NAME=Khedma4Students" > .env && \
+    echo "APP_ENV=production" >> .env && \
+    echo "APP_KEY=" >> .env && \
+    echo "APP_DEBUG=false" >> .env && \
+    echo "APP_URL=https://khedma4students-backend.onrender.com" >> .env && \
+    echo "DB_CONNECTION=pgsql" >> .env && \
+    echo "DB_HOST=" >> .env && \
+    echo "DB_PORT=5432" >> .env && \
+    echo "DB_DATABASE=" >> .env && \
+    echo "DB_USERNAME=" >> .env && \
+    echo "DB_PASSWORD=" >> .env && \
+    echo "CACHE_DRIVER=file" >> .env && \
+    echo "SESSION_DRIVER=file" >> .env && \
+    echo "QUEUE_CONNECTION=sync" >> .env
 
 # Copy composer file
 COPY composer.json ./

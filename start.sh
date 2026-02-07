@@ -2,18 +2,26 @@
 
 echo "Starting Khedma4Students backend..."
 
-# Check if .env exists, if not create from example or create basic one
-if [ ! -f .env ]; then
-    if [ -f .env.example ]; then
-        echo "Creating .env from .env.example..."
-        cp .env.example .env
-    else
-        echo "Creating basic .env file..."
-        echo "APP_ENV=production" > .env
-        echo "APP_DEBUG=false" >> .env
-        echo "APP_URL=https://khedma4students-backend.onrender.com" >> .env
-    fi
-fi
+# Recreate .env file with environment variables from Render
+echo "Recreating .env with Render environment variables..."
+cat > .env << EOF
+APP_NAME=Khedma4Students
+APP_ENV=production
+APP_KEY=${APP_KEY:-}
+APP_DEBUG=false
+APP_URL=${APP_URL:-https://khedma4students-backend.onrender.com}
+DB_CONNECTION=${DB_CONNECTION:-pgsql}
+DB_HOST=${DB_HOST:-}
+DB_PORT=${DB_PORT:-5432}
+DB_DATABASE=${DB_DATABASE:-}
+DB_USERNAME=${DB_USERNAME:-}
+DB_PASSWORD=${DB_PASSWORD:-}
+CACHE_DRIVER=file
+SESSION_DRIVER=file
+QUEUE_CONNECTION=sync
+EOF
+
+echo ".env file created with environment variables"
 
 # Wait for database to be ready
 echo "Waiting for database connection..."
@@ -40,10 +48,13 @@ echo "Running database migrations..."
 php artisan migrate --force
 
 # Check if database is empty and seed it
-STUDENT_COUNT=$(php artisan tinker --execute="echo DB::table('students')->count();" 2>/dev/null)
-if [ "$STUDENT_COUNT" -eq 0 ]; then
+STUDENT_COUNT=$(php artisan tinker --execute="echo DB::table('students')->count();" 2>/dev/null | tr -d '\r\n')
+echo "Current student count: $STUDENT_COUNT"
+if [ "$STUDENT_COUNT" -eq 0 ] 2>/dev/null; then
     echo "Database is empty, seeding sample data..."
     php seed_production.php
+else
+    echo "Database already has data, skipping seeding"
 fi
 
 echo "Starting Laravel application..."
