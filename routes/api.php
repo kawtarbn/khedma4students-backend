@@ -17,6 +17,7 @@ use App\Http\Controllers\TestProfileController;
 use App\Http\Controllers\CreateStudentController;
 use App\Http\Controllers\StaticStudentController;
 use App\Http\Controllers\StaticHiringRequestController;
+use App\Http\Controllers\VerificationCodeController;
 use App\Http\Controllers\RequestController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\SuccessStoryController;
@@ -164,6 +165,10 @@ Route::get('/get-latest-student', [TestProfileController::class, 'getLatestStude
 
 // Create student 2 for dashboard testing
 Route::get('/create-student-2', [CreateStudentController::class, 'createStudent2']);
+
+// Verification code routes (bypass email)
+Route::get('/get-latest-verification-code', [VerificationCodeController::class, 'getLatestVerificationCode']);
+Route::post('/verify-email-with-code', [VerificationCodeController::class, 'verifyWithCode']);
 
 // Verification routes
 Route::get('/get-verification-code', [VerificationController::class, 'getVerificationCode']);
