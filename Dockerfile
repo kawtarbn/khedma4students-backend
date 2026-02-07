@@ -33,15 +33,18 @@ COPY . .
 # Copy composer file
 COPY composer.json ./
 
-# Install dependencies
-RUN composer install --no-dev --optimize-autoloader --no-interaction
-
-# Create basic .env file (Render will override with environment variables)
+# Create basic .env file for production
 RUN echo "APP_ENV=production" > .env && \
     echo "APP_DEBUG=false" >> .env && \
     echo "APP_URL=https://khedma4students-backend.onrender.com" >> .env && \
     echo "DB_CONNECTION=pgsql" >> .env && \
-    echo "DB_PORT=5432" >> .env
+    echo "DB_PORT=5432" >> .env && \
+    echo "CACHE_DRIVER=file" >> .env && \
+    echo "SESSION_DRIVER=file" >> .env && \
+    echo "QUEUE_CONNECTION=sync" >> .env
+
+# Install dependencies
+RUN composer install --no-dev --optimize-autoloader --no-interaction
 
 # Generate app key
 RUN php artisan key:generate --force
@@ -57,5 +60,5 @@ RUN chmod -R 755 /var/www/html/storage /var/www/html/bootstrap/cache
 # Expose port
 EXPOSE 8080
 
-# Start command with database setup and migrations
-CMD ["sh", "-c", "echo 'DB_HOST=${DB_HOST}' >> .env && echo 'DB_DATABASE=${DB_DATABASE}' >> .env && echo 'DB_USERNAME=${DB_USERNAME}' >> .env && echo 'DB_PASSWORD=${DB_PASSWORD}' >> .env && php artisan config:clear && php artisan migrate --force && php artisan serve --host=0.0.0.0 --port=8080"]
+# Start command with proper environment setup
+CMD ["sh", "-c", "php artisan config:clear && php artisan migrate --force && php artisan serve --host=0.0.0.0 --port=8080"]
