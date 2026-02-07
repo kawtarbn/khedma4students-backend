@@ -18,6 +18,7 @@ use App\Http\Controllers\SeederController;
 use App\Http\Controllers\StudentFixController;
 use App\Http\Controllers\PublicController;
 use App\Http\Controllers\ResetController;
+use App\Http\Controllers\VerificationController;
 
 // Health check
 Route::get('/health', function () {
@@ -124,4 +125,8 @@ Route::post('/public/apply-job', [PublicController::class, 'applyToJob']);
 // Database reset routes
 Route::get('/reset-database', [ResetController::class, 'resetDatabase']);
 Route::get('/seed-from-zero', [ResetController::class, 'seedFromZero']);
+
+// Verification routes
+Route::get('/get-verification-code', [VerificationController::class, 'getVerificationCode']);
+Route::post('/send-verification-code', [VerificationController::class, 'sendVerificationCode']);
 Route::put('/applications/{id}/status', [ApplicationController::class, 'updateStatus']);
