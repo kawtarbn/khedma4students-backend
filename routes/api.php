@@ -17,6 +17,7 @@ use App\Http\Controllers\EmployerPasswordResetController;
 use App\Http\Controllers\SeederController;
 use App\Http\Controllers\StudentFixController;
 use App\Http\Controllers\PublicController;
+use App\Http\Controllers\ResetController;
 
 // Health check
 Route::get('/health', function () {
@@ -119,4 +120,8 @@ Route::post('/public/login-employer', [PublicController::class, 'loginEmployer']
 Route::get('/public/jobs', [PublicController::class, 'getPublicJobs']);
 Route::get('/public/services', [PublicController::class, 'getPublicServices']);
 Route::post('/public/apply-job', [PublicController::class, 'applyToJob']);
+
+// Database reset routes
+Route::get('/reset-database', [ResetController::class, 'resetDatabase']);
+Route::get('/seed-from-zero', [ResetController::class, 'seedFromZero']);
 Route::put('/applications/{id}/status', [ApplicationController::class, 'updateStatus']);
