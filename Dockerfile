@@ -57,5 +57,5 @@ RUN chmod -R 755 /var/www/html/storage /var/www/html/bootstrap/cache
 # Expose port
 EXPOSE 8080
 
-# Start command
-CMD ["sh", "-c", "php artisan migrate --force && php artisan serve --host=0.0.0.0 --port=8080"]
+# Start command with runtime environment setup
+CMD ["sh", "-c", "echo 'DB_HOST=${DB_HOST}' >> .env && echo 'DB_DATABASE=${DB_DATABASE}' >> .env && echo 'DB_USERNAME=${DB_USERNAME}' >> .env && echo 'DB_PASSWORD=${DB_PASSWORD}' >> .env && php artisan migrate --force && php artisan serve --host=0.0.0.0 --port=8080"]
