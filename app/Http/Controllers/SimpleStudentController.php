@@ -21,6 +21,9 @@ class SimpleStudentController extends Controller
                 'password' => Hash::make($request->password),
                 'university' => $request->university,
                 'city' => $request->city,
+                'phone' => $request->phone,
+                'skills' => $request->skills,
+                'description' => $request->description,
                 'email_verification_token' => \Illuminate\Support\Str::random(60),
             ]);
             

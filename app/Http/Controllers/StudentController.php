@@ -39,6 +39,9 @@ class StudentController extends Controller
             'password' => 'required|string|min:6',
             'university' => 'required|string|max:255',
             'city' => 'required|string|max:255',
+            'phone' => 'nullable|string|max:20',
+            'skills' => 'nullable|string|max:1000',
+            'description' => 'nullable|string|max:2000',
         ]);
 
         if ($validator->fails()) {
@@ -54,6 +57,9 @@ class StudentController extends Controller
             'password' => Hash::make($request->password),
             'university' => $request->university,
             'city' => $request->city,
+            'phone' => $request->phone,
+            'skills' => $request->skills,
+            'description' => $request->description,
             'email_verification_token' => $verificationToken,
         ]);
 
