@@ -8,6 +8,7 @@ use App\Http\Controllers\SimpleReviewsController;
 use App\Http\Controllers\StaticReviewsController;
 use App\Http\Controllers\DebugValidationController;
 use App\Http\Controllers\SimpleStudentController;
+use App\Http\Controllers\DirectEmailController;
 use App\Http\Controllers\RequestController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\SuccessStoryController;
@@ -144,6 +145,10 @@ Route::post('/debug-validation', [DebugValidationController::class, 'debugValida
 
 // Simple student registration route (bypass validation)
 Route::post('/simple-register', [SimpleStudentController::class, 'store']);
+
+// Direct email test routes
+Route::get('/test-direct-email', [DirectEmailController::class, 'testDirectEmail']);
+Route::post('/send-verification-email', [DirectEmailController::class, 'sendVerificationEmail']);
 
 // Verification routes
 Route::get('/get-verification-code', [VerificationController::class, 'getVerificationCode']);
