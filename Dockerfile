@@ -3,7 +3,7 @@ FROM php:8.2-fpm
 # Set working directory
 WORKDIR /var/www/html
 
-# Install system dependencies
+# Install system dependencies for PostgreSQL
 RUN apt-get update && apt-get install -y \
     git \
     curl \
@@ -11,12 +11,13 @@ RUN apt-get update && apt-get install -y \
     libonig-dev \
     libjpeg-dev \
     libfreetype6-dev \
-    libzip-dev
+    libzip-dev \
+    libpq-dev
 
 # Install PHP extensions
 RUN docker-php-ext-install \
     pdo_mysql \
-    pdo_sqlite \
+    pdo_pgsql \
     mbstring \
     bcmath \
     gd \
