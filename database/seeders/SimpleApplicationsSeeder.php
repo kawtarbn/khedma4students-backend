@@ -9,12 +9,13 @@ class SimpleApplicationsSeeder extends Seeder
 {
     public function run(): void
     {
-        // Get students and jobs for relationships
+        // Get students, jobs, and employers for relationships
         $students = \DB::table('students')->pluck('id')->toArray();
         $jobs = \DB::table('jobs')->pluck('id')->toArray();
+        $employers = \DB::table('employers')->pluck('id')->toArray();
         
-        if (empty($students) || empty($jobs)) {
-            $this->command->error('No students or active jobs found. Please run students and jobs seeders first.');
+        if (empty($students) || empty($jobs) || empty($employers)) {
+            $this->command->error('No students, jobs, or employers found. Please run other seeders first.');
             return;
         }
 
@@ -23,6 +24,7 @@ class SimpleApplicationsSeeder extends Seeder
             [
                 'job_id' => $jobs[0] ?? 1,
                 'student_id' => $students[0] ?? 1,
+                'employer_id' => $employers[0] ?? 1,
                 'fullname' => 'Ahmed Benali',
                 'email' => 'ahmed.weak@example.com',
                 'phone' => '+213 555 111 222',
@@ -36,6 +38,7 @@ class SimpleApplicationsSeeder extends Seeder
             [
                 'job_id' => $jobs[1] ?? 2,
                 'student_id' => $students[1] ?? 2,
+                'employer_id' => $employers[1] ?? 2,
                 'fullname' => 'Fatima Zohra',
                 'email' => 'fatima.strong@example.com',
                 'phone' => '+213 555 333 444',
@@ -49,6 +52,7 @@ class SimpleApplicationsSeeder extends Seeder
             [
                 'job_id' => $jobs[2] ?? 3,
                 'student_id' => $students[2] ?? 3,
+                'employer_id' => $employers[2] ?? 3,
                 'fullname' => 'Mohamed Cherif',
                 'email' => 'mohamed.special@example.com',
                 'phone' => '+213 555 555 666',
