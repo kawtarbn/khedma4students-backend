@@ -50,7 +50,7 @@ RUN echo "APP_NAME=Khedma4Students" > .env && \
     echo "" >> .env && \
     echo "# DATABASE - RENDER POSTGRESQL" >> .env && \
     echo "DB_CONNECTION=pgsql" >> .env && \
-    echo "DB_HOST=dpg-d63akashg0os73cbmdf0-a.oregon.postgres.render.com" >> .env && \
+    echo "DB_HOST=dpg-d63akashg0os73cbmdf0-a" >> .env && \
     echo "DB_PORT=5432" >> .env && \
     echo "DB_DATABASE=hedma4students_db" >> .env && \
     echo "DB_USERNAME=hedma4students_db_user" >> .env && \
