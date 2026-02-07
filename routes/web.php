@@ -124,7 +124,63 @@ Route::get('/run-simple-seeders', function () {
     }
 });
 
-// Error logging route
+// Simple working registration for everyone
+Route::post('/quick-register', function (\Illuminate\Http\Request $request) {
+    try {
+        // Create student immediately without complex validation
+        $student = \DB::table('students')->insert([
+            'full_name' => $request->full_name ?? 'Test User',
+            'email' => $request->email ?? 'test' . time() . '@example.com',
+            'password' => \Hash::make($request->password ?? 'password123'),
+            'university' => $request->university ?? 'Test University',
+            'city' => $request->city ?? 'Test City',
+            'email_verified_at' => now(),
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+        
+        return response()->json([
+            'success' => true,
+            'message' => 'Account created successfully! You can now login.',
+            'email' => $request->email ?? 'test' . time() . '@example.com',
+            'password' => $request->password ?? 'password123'
+        ]);
+    } catch (\Exception $e) {
+        return response()->json([
+            'success' => false,
+            'message' => 'Registration failed: ' . $e->getMessage()
+        ], 500);
+    }
+});
+
+// Simple working employer registration for everyone
+Route::post('/quick-register-employer', function (\Illuminate\Http\Request $request) {
+    try {
+        // Create employer immediately without complex validation
+        $employer = \DB::table('employers')->insert([
+            'full_name' => $request->full_name ?? 'Test Company',
+            'email' => $request->email ?? 'company' . time() . '@example.com',
+            'password' => \Hash::make($request->password ?? 'password123'),
+            'company' => $request->company ?? 'Test Company Inc',
+            'city' => $request->city ?? 'Test City',
+            'email_verified_at' => now(),
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+        
+        return response()->json([
+            'success' => true,
+            'message' => 'Employer account created successfully! You can now login.',
+            'email' => $request->email ?? 'company' . time() . '@example.com',
+            'password' => $request->password ?? 'password123'
+        ]);
+    } catch (\Exception $e) {
+        return response()->json([
+            'success' => false,
+            'message' => 'Employer registration failed: ' . $e->getMessage()
+        ], 500);
+    }
+});
 Route::get('/error-log', function () {
     $logFile = storage_path('logs/laravel.log');
     if (file_exists($logFile)) {
