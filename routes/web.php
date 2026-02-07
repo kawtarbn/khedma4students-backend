@@ -100,10 +100,10 @@ Route::get('/run-simple-seeders', function () {
         
         // Create basic test employer
         \DB::table('employers')->insert([
-            'company_name' => 'Test Company',
+            'full_name' => 'Test Company',
             'email' => 'company@example.com',
             'password' => \Hash::make('password123'),
-            'industry' => 'Technology',
+            'company' => 'Test Company Inc',
             'city' => 'Test City',
             'email_verified_at' => now(),
             'created_at' => now(),
