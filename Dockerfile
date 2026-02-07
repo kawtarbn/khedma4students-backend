@@ -24,6 +24,9 @@ RUN docker-php-ext-install \
     zip \
     opcache
 
+# Install Composer
+COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
+
 # Copy composer files
 COPY composer.json composer.lock ./
 
