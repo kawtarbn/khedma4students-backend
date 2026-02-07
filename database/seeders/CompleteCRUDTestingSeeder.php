@@ -13,14 +13,14 @@ class CompleteCRUDTestingSeeder extends Seeder
         
         // Clear existing data to avoid conflicts
         $this->command->info('📋 Clearing existing data...');
-        DB::statement('SET FOREIGN_KEY_CHECKS=0');
+        DB::statement('SET session_replication_role = replica');
         DB::table('applications')->truncate();
         DB::table('hiring_requests')->truncate();
         DB::table('services')->truncate();
         DB::table('jobs')->truncate();
         DB::table('students')->truncate();
         DB::table('employers')->truncate();
-        DB::statement('SET FOREIGN_KEY_CHECKS=1');
+        DB::statement('SET session_replication_role = DEFAULT');
         
         // Run seeders in dependency order with error handling
         $this->command->info('👥 Seeding students with password constraints...');
