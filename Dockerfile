@@ -27,11 +27,11 @@ RUN docker-php-ext-install \
 # Install Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
-# Copy composer files
-COPY composer.json composer.lock ./
+# Copy composer file
+COPY composer.json ./
 
 # Install dependencies
-RUN composer install --no-dev --optimize-autoloader
+RUN composer install --no-dev --optimize-autoloader --no-interaction
 
 # Copy application code
 COPY . .
