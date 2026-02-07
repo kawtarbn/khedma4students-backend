@@ -30,19 +30,19 @@ COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 # Copy application code first
 COPY . .
 
-# Create .env file with hardcoded values that work
-RUN echo "APP_ENV=production" > .env && \
-    echo "APP_DEBUG=false" >> .env && \
-    echo "APP_URL=https://khedma4students-backend.onrender.com" >> .env && \
-    echo "DB_CONNECTION=pgsql" >> .env && \
-    echo "DB_HOST=dpg-d63akashg0os73cbmdf0-a" >> .env && \
-    echo "DB_PORT=5432" >> .env && \
-    echo "DB_DATABASE=hedma4students_db" >> .env && \
-    echo "DB_USERNAME=hedma4students_db_user" >> .env && \
-    echo "DB_PASSWORD=1x2f71cA90zNhGmUy6owNMud3u4Wtqhf" >> .env && \
-    echo "CACHE_DRIVER=file" >> .env && \
-    echo "SESSION_DRIVER=file" >> .env && \
-    echo "QUEUE_CONNECTION=sync" >> .env
+# Copy .env.example to .env and update with production values
+RUN cp .env.example .env && \
+    sed -i 's/APP_ENV=local/APP_ENV=production/' .env && \
+    sed -i 's/APP_DEBUG=true/APP_DEBUG=false/' .env && \
+    sed -i 's|APP_URL=http://localhost:8000|APP_URL=https://khedma4students-backend.onrender.com|' .env && \
+    sed -i 's/DB_CONNECTION=mysql/DB_CONNECTION=pgsql/' .env && \
+    sed -i 's/DB_HOST=127.0.0.1/DB_HOST=dpg-d63akashg0os73cbmdf0-a/' .env && \
+    sed -i 's/DB_PORT=3306/DB_PORT=5432/' .env && \
+    sed -i 's/DB_DATABASE=khedma4students/DB_DATABASE=hedma4students_db/' .env && \
+    sed -i 's/DB_USERNAME=root/DB_USERNAME=hedma4students_db_user/' .env && \
+    sed -i 's/DB_PASSWORD=/DB_PASSWORD=1x2f71cA90zNhGmUy6owNMud3u4Wtqhf/' .env && \
+    sed -i 's/SESSION_DRIVER=database/SESSION_DRIVER=file/' .env && \
+    sed -i 's/QUEUE_CONNECTION=database/QUEUE_CONNECTION=sync/' .env
 
 # Copy composer file
 COPY composer.json ./
