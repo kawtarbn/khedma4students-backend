@@ -54,7 +54,7 @@ RUN echo "APP_NAME=Khedma4Students" > .env && \
     echo "DB_PORT=5432" >> .env && \
     echo "DB_DATABASE=hedma4students_db" >> .env && \
     echo "DB_USERNAME=hedma4students_db_user" >> .env && \
-    echo "DB_PASSWORD=REPLACE_WITH_CORRECT_RENDER_PASSWORD" >> .env && \
+    echo "DB_PASSWORD=1x2f7lcA90zNhGmUy6owNMud3u4Wtqhf" >> .env && \
     echo "" >> .env && \
     echo "# CACHE" >> .env && \
     echo "CACHE_DRIVER=file" >> .env && \
