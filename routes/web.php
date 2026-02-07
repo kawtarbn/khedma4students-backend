@@ -3,6 +3,16 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\DB;
 
+// Root route test
+Route::get('/', function () {
+    return response()->json([
+        'message' => 'Backend is running!',
+        'status' => 'success',
+        'timestamp' => now(),
+        'routes_loaded' => true
+    ]);
+});
+
 // Most basic test route
 Route::get('/basic', function () {
     return 'Backend is working!';
