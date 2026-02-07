@@ -2,10 +2,17 @@
 
 echo "Starting Khedma4Students backend..."
 
-# Check if .env exists, if not create from example
+# Check if .env exists, if not create from example or create basic one
 if [ ! -f .env ]; then
-    echo "Creating .env from .env.example..."
-    cp .env.example .env
+    if [ -f .env.example ]; then
+        echo "Creating .env from .env.example..."
+        cp .env.example .env
+    else
+        echo "Creating basic .env file..."
+        echo "APP_ENV=production" > .env
+        echo "APP_DEBUG=false" >> .env
+        echo "APP_URL=https://khedma4students-backend.onrender.com" >> .env
+    fi
 fi
 
 # Wait for database to be ready

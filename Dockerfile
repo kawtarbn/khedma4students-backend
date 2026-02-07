@@ -30,8 +30,8 @@ COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 # Copy application code first
 COPY . .
 
-# Copy .env.example to .env if it exists, otherwise create basic .env
-COPY .env.example .env 2>/dev/null || echo "APP_ENV=production" > .env
+# Copy .env.example to .env if it exists
+COPY .env.example .env
 
 # Copy composer file
 COPY composer.json ./
