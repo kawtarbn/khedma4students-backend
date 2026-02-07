@@ -23,6 +23,7 @@ use App\Http\Controllers\SequenceFixController;
 use App\Http\Controllers\RequestDebugController;
 use App\Http\Controllers\DatabaseRecreateController;
 use App\Http\Controllers\EmptyDatabaseController;
+use App\Http\Controllers\DebugStudentsController;
 
 // Health check
 Route::get('/health', function () {
@@ -146,4 +147,7 @@ Route::get('/recreate-database', [DatabaseRecreateController::class, 'recreateDa
 
 // Empty database route
 Route::get('/create-empty-database', [EmptyDatabaseController::class, 'createEmptyDatabase']);
+
+// Debug students route
+Route::get('/debug-students', [DebugStudentsController::class, 'debugStudents']);
 Route::put('/applications/{id}/status', [ApplicationController::class, 'updateStatus']);
