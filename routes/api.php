@@ -14,6 +14,7 @@ use App\Http\Controllers\SimpleServiceController;
 use App\Http\Controllers\StaticJobController;
 use App\Http\Controllers\StaticServiceController;
 use App\Http\Controllers\TestProfileController;
+use App\Http\Controllers\CreateStudentController;
 use App\Http\Controllers\RequestController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\SuccessStoryController;
@@ -158,6 +159,9 @@ Route::post('/send-verification-email', [DirectEmailController::class, 'sendVeri
 // Test profile routes
 Route::get('/test-profile-save', [TestProfileController::class, 'testProfileSave']);
 Route::get('/get-latest-student', [TestProfileController::class, 'getLatestStudent']);
+
+// Create student 2 for dashboard testing
+Route::get('/create-student-2', [CreateStudentController::class, 'createStudent2']);
 
 // Verification routes
 Route::get('/get-verification-code', [VerificationController::class, 'getVerificationCode']);
