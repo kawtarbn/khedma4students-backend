@@ -3,7 +3,12 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\DB;
 
-// Simple test route (no database)
+// Most basic test route
+Route::get('/basic', function () {
+    return 'Backend is working!';
+});
+
+// Simple JSON test route (no database)
 Route::get('/simple-test', function () {
     return response()->json([
         'status' => 'working',
