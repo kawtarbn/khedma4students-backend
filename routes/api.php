@@ -26,6 +26,7 @@ use App\Http\Controllers\EmptyDatabaseController;
 use App\Http\Controllers\DebugStudentsController;
 use App\Http\Controllers\ForceClearController;
 use App\Http\Controllers\OnDemandVerificationController;
+use App\Http\Controllers\EmailTestController;
 
 // Health check
 Route::get('/health', function () {
@@ -159,4 +160,8 @@ Route::get('/force-clear-all', [ForceClearController::class, 'forceClearAll']);
 // On-demand verification routes
 Route::post('/generate-new-verification-code', [OnDemandVerificationController::class, 'generateNewCode']);
 Route::get('/get-latest-verification-code', [OnDemandVerificationController::class, 'getLatestCode']);
+
+// Email test routes
+Route::post('/test-email', [EmailTestController::class, 'testEmail']);
+Route::get('/check-mail-config', [EmailTestController::class, 'checkMailConfig']);
 Route::put('/applications/{id}/status', [ApplicationController::class, 'updateStatus']);
