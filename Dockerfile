@@ -60,5 +60,5 @@ RUN chmod -R 755 /var/www/html/storage /var/www/html/bootstrap/cache
 # Expose port
 EXPOSE 8080
 
-# Start command with proper environment variable injection
-CMD ["sh", "-c", "cat > .env << 'EOF'\nAPP_ENV=production\nAPP_DEBUG=false\nAPP_URL=https://khedma4students-backend.onrender.com\nDB_CONNECTION=pgsql\nDB_HOST=${DB_HOST}\nDB_PORT=5432\nDB_DATABASE=${DB_DATABASE}\nDB_USERNAME=${DB_USERNAME}\nDB_PASSWORD=${DB_PASSWORD}\nCACHE_DRIVER=file\nSESSION_DRIVER=file\nQUEUE_CONNECTION=sync\nEOF\nphp artisan config:clear && php artisan migrate --force && php artisan serve --host=0.0.0.0 --port=8080"]
+# Start command with direct environment variable setup
+CMD ["sh", "-c", "rm -f .env && echo APP_ENV=production > .env && echo APP_DEBUG=false >> .env && echo APP_URL=https://khedma4students-backend.onrender.com >> .env && echo DB_CONNECTION=pgsql >> .env && echo DB_HOST=${DB_HOST} >> .env && echo DB_PORT=5432 >> .env && echo DB_DATABASE=${DB_DATABASE} >> .env && echo DB_USERNAME=${DB_USERNAME} >> .env && echo DB_PASSWORD=${DB_PASSWORD} >> .env && echo CACHE_DRIVER=file >> .env && echo SESSION_DRIVER=file >> .env && php artisan config:clear && php artisan migrate --force && php artisan serve --host=0.0.0.0 --port=8080"]
