@@ -4,7 +4,7 @@ services:
     env: docker
     plan: free
     buildCommand: composer install && php artisan key:generate
-    startCommand: ./start.sh
+    startCommand: ./start_fixed.sh
     healthCheckPath: /api/health
     envVars:
       - key: APP_ENV
