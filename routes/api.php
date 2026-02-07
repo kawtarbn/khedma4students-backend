@@ -15,6 +15,8 @@ use App\Http\Controllers\StaticJobController;
 use App\Http\Controllers\StaticServiceController;
 use App\Http\Controllers\TestProfileController;
 use App\Http\Controllers\CreateStudentController;
+use App\Http\Controllers\StaticStudentController;
+use App\Http\Controllers\StaticHiringRequestController;
 use App\Http\Controllers\RequestController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\SuccessStoryController;
@@ -60,9 +62,9 @@ Route::post('/students', [StudentController::class, 'store']);
 Route::put('/students/{id}', [StudentController::class, 'update']);
 Route::delete('/students/{id}', [StudentController::class, 'destroy']);
 Route::post('/login', [StudentController::class, 'login']);
-Route::get('/students/{id}/services', [StudentController::class, 'getServices']);
-Route::get('/students/{id}/applications', [StudentController::class, 'getApplications']);
-Route::get('/students/{id}/service-applications', [StudentController::class, 'getServiceApplications']);
+Route::get('/students/{id}/services', [StaticStudentController::class, 'getStudentServices']);
+Route::get('/students/{id}/applications', [StaticStudentController::class, 'getStudentApplications']);
+Route::get('/students/{id}/service-applications', [StaticStudentController::class, 'getStudentServiceApplications']);
 
 // Employer routes
 Route::get('/employers', [EmployerController::class, 'index']);
@@ -105,7 +107,7 @@ Route::post('/contact', [ContactController::class, 'store']);
 
 // Hiring request routes
 Route::post('/hiring-request', [HiringRequestController::class, 'store']);
-Route::get('/hiring-requests/student/{studentId}', [HiringRequestController::class, 'getStudentHiringRequests']);
+Route::get('/hiring-requests/student/{studentId}', [StaticHiringRequestController::class, 'getStudentHiringRequests']);
 Route::get('/hiring-requests/employer/{employerId}', [HiringRequestController::class, 'getEmployerHiringRequests']);
 
 // Student forgot password and email verification routes
