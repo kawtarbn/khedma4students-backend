@@ -36,22 +36,15 @@ COPY composer.json ./
 # Install dependencies
 RUN composer install --no-dev --optimize-autoloader --no-interaction
 
-# Create .env file (will be updated by Render environment variables at runtime)
+# Create basic .env file (Render will override with environment variables)
 RUN echo "APP_ENV=production" > .env && \
     echo "APP_DEBUG=false" >> .env && \
     echo "APP_URL=https://khedma4students-backend.onrender.com" >> .env && \
     echo "DB_CONNECTION=pgsql" >> .env && \
-    echo "DB_HOST=\$DB_HOST" >> .env && \
-    echo "DB_PORT=5432" >> .env && \
-    echo "DB_DATABASE=\$DB_DATABASE" >> .env && \
-    echo "DB_USERNAME=\$DB_USERNAME" >> .env && \
-    echo "DB_PASSWORD=\$DB_PASSWORD" >> .env
+    echo "DB_PORT=5432" >> .env
 
 # Generate app key
 RUN php artisan key:generate --force
-
-# Skip migrations at build time (will run at runtime)
-# RUN php artisan migrate --force
 
 # Cache config and routes
 RUN php artisan config:cache
