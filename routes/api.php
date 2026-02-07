@@ -24,6 +24,7 @@ use App\Http\Controllers\RequestDebugController;
 use App\Http\Controllers\DatabaseRecreateController;
 use App\Http\Controllers\EmptyDatabaseController;
 use App\Http\Controllers\DebugStudentsController;
+use App\Http\Controllers\ForceClearController;
 
 // Health check
 Route::get('/health', function () {
@@ -150,4 +151,7 @@ Route::get('/create-empty-database', [EmptyDatabaseController::class, 'createEmp
 
 // Debug students route
 Route::get('/debug-students', [DebugStudentsController::class, 'debugStudents']);
+
+// Force clear all data route
+Route::get('/force-clear-all', [ForceClearController::class, 'forceClearAll']);
 Route::put('/applications/{id}/status', [ApplicationController::class, 'updateStatus']);
