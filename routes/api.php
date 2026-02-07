@@ -7,6 +7,7 @@ use App\Http\Controllers\FinalFixController;
 use App\Http\Controllers\SimpleReviewsController;
 use App\Http\Controllers\StaticReviewsController;
 use App\Http\Controllers\DebugValidationController;
+use App\Http\Controllers\SimpleStudentController;
 use App\Http\Controllers\RequestController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\SuccessStoryController;
@@ -140,6 +141,9 @@ Route::get('/system-status', [FinalFixController::class, 'getSystemStatus']);
 
 // Debug validation route
 Route::post('/debug-validation', [DebugValidationController::class, 'debugValidation']);
+
+// Simple student registration route (bypass validation)
+Route::post('/simple-register', [SimpleStudentController::class, 'store']);
 
 // Verification routes
 Route::get('/get-verification-code', [VerificationController::class, 'getVerificationCode']);
