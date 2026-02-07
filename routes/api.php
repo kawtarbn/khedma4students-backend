@@ -6,6 +6,7 @@ use App\Http\Controllers\CompleteResetController;
 use App\Http\Controllers\FinalFixController;
 use App\Http\Controllers\SimpleReviewsController;
 use App\Http\Controllers\StaticReviewsController;
+use App\Http\Controllers\DebugValidationController;
 use App\Http\Controllers\RequestController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\SuccessStoryController;
@@ -133,9 +134,12 @@ Route::get('/public/jobs', [PublicController::class, 'getPublicJobs']);
 Route::get('/public/services', [PublicController::class, 'getPublicServices']);
 Route::post('/public/apply-job', [PublicController::class, 'applyToJob']);
 
-// Database reset routes
-Route::get('/reset-database', [ResetController::class, 'resetDatabase']);
-Route::get('/seed-from-zero', [ResetController::class, 'seedFromZero']);
+// Database// Final fix routes
+Route::get('/test-registration', [FinalFixController::class, 'testRegistration']);
+Route::get('/system-status', [FinalFixController::class, 'getSystemStatus']);
+
+// Debug validation route
+Route::post('/debug-validation', [DebugValidationController::class, 'debugValidation']);
 
 // Verification routes
 Route::get('/get-verification-code', [VerificationController::class, 'getVerificationCode']);
