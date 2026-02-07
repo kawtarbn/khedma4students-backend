@@ -58,4 +58,4 @@ RUN chmod -R 755 /var/www/html/storage /var/www/html/bootstrap/cache
 EXPOSE 8080
 
 # Start command with environment variables and Laravel commands
-CMD ["sh", "-c", "envsubst < .env > .env.tmp && mv .env.tmp .env && php artisan key:generate --force && php artisan migrate --force && php artisan serve --host=0.0.0.0 --port=8080"]
+CMD ["sh", "-c", "echo 'APP_ENV=production' > .env && echo 'APP_DEBUG=false' >> .env && echo 'APP_URL=https://khedma4students-backend.onrender.com' >> .env && echo 'DB_CONNECTION=pgsql' >> .env && echo 'DB_HOST='$DB_HOST >> .env && echo 'DB_PORT=5432' >> .env && echo 'DB_DATABASE='$DB_DATABASE >> .env && echo 'DB_USERNAME='$DB_USERNAME >> .env && echo 'DB_PASSWORD='$DB_PASSWORD >> .env && echo 'CACHE_DRIVER=file' >> .env && echo 'SESSION_DRIVER=file' >> .env && echo 'QUEUE_CONNECTION=sync' >> .env && php artisan key:generate --force && php artisan migrate --force && php artisan serve --host=0.0.0.0 --port=8080"]
