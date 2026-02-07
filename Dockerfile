@@ -60,5 +60,19 @@ RUN chmod -R 755 /var/www/html/storage /var/www/html/bootstrap/cache
 # Expose port
 EXPOSE 8080
 
-# Start command with Laravel-compatible environment setup
-CMD ["sh", "-c", "php artisan key:generate --force && php artisan migrate --force && php artisan serve --host=0.0.0.0 --port=8080"]
+# Create .env file with Render environment variables before Laravel starts
+CMD ["sh", "-c", "cat > .env << 'EOF'
+APP_ENV=production
+APP_DEBUG=false
+APP_URL=https://khedma4students-backend.onrender.com
+DB_CONNECTION=pgsql
+DB_HOST=${DB_HOST}
+DB_PORT=5432
+DB_DATABASE=${DB_DATABASE}
+DB_USERNAME=${DB_USERNAME}
+DB_PASSWORD=${DB_PASSWORD}
+CACHE_DRIVER=file
+SESSION_DRIVER=file
+QUEUE_CONNECTION=sync
+EOF
+php artisan key:generate --force && php artisan migrate --force && php artisan serve --host=0.0.0.0 --port=8080"]
