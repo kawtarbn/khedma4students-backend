@@ -44,6 +44,20 @@ COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 # Copy application code first
 COPY . .
 
+# Create .env file first
+RUN echo "APP_ENV=production" > .env && \
+    echo "APP_DEBUG=false" >> .env && \
+    echo "APP_URL=https://khedma4students-backend.onrender.com" >> .env && \
+    echo "DB_CONNECTION=pgsql" >> .env && \
+    echo "DB_HOST=${DB_HOST}" >> .env && \
+    echo "DB_PORT=5432" >> .env && \
+    echo "DB_DATABASE=${DB_DATABASE}" >> .env && \
+    echo "DB_USERNAME=${DB_USERNAME}" >> .env && \
+    echo "DB_PASSWORD=${DB_PASSWORD}" >> .env && \
+    echo "CACHE_DRIVER=file" >> .env && \
+    echo "SESSION_DRIVER=file" >> .env && \
+    echo "QUEUE_CONNECTION=sync" >> .env
+
 # Copy composer file
 COPY composer.json ./
 
