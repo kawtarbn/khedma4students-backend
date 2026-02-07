@@ -16,6 +16,7 @@ use App\Http\Controllers\StudentPasswordResetController;
 use App\Http\Controllers\EmployerPasswordResetController;
 use App\Http\Controllers\SeederController;
 use App\Http\Controllers\StudentFixController;
+use App\Http\Controllers\PublicController;
 
 // Health check
 Route::get('/health', function () {
@@ -109,4 +110,13 @@ Route::get('/seed-production', [SeederController::class, 'seedProduction']);
 
 // Fix student IDs route
 Route::get('/fix-student-ids', [StudentFixController::class, 'fixStudentIds']);
+
+// Public routes for any user
+Route::post('/public/register-student', [PublicController::class, 'registerStudent']);
+Route::post('/public/register-employer', [PublicController::class, 'registerEmployer']);
+Route::post('/public/login-student', [PublicController::class, 'loginStudent']);
+Route::post('/public/login-employer', [PublicController::class, 'loginEmployer']);
+Route::get('/public/jobs', [PublicController::class, 'getPublicJobs']);
+Route::get('/public/services', [PublicController::class, 'getPublicServices']);
+Route::post('/public/apply-job', [PublicController::class, 'applyToJob']);
 Route::put('/applications/{id}/status', [ApplicationController::class, 'updateStatus']);
