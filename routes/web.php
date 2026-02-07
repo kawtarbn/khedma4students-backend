@@ -11,7 +11,26 @@ Route::get('/ping', function () {
         'student_file' => app_path('Models/Student.php'),
         'student_file_exists' => file_exists(app_path('Models/Student.php')),
         'student_class_autoloads' => class_exists(\App\Models\Student::class),
+        'env' => app()->environment(),
+        'db_connection' => config('database.default'),
+        'db_host' => config('database.connections.pgsql.host'),
     ]);
+});
+
+// Error logging route
+Route::get('/error-log', function () {
+    $logFile = storage_path('logs/laravel.log');
+    if (file_exists($logFile)) {
+        $content = file_get_contents($logFile);
+        $lines = explode("\n", $content);
+        $recentErrors = array_slice($lines, -20); // Last 20 lines
+        return response()->json([
+            'log_file' => $logFile,
+            'recent_errors' => $recentErrors,
+            'total_lines' => count($lines)
+        ]);
+    }
+    return response()->json(['message' => 'No log file found']);
 });
 
 // Database connection test
