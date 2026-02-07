@@ -18,7 +18,7 @@ class EmptyDatabaseController extends Controller
             $tables = [
                 'password_resets',
                 'success_stories', 
-                'reviews',
+                'reviews',  // Reviews table
                 'contact_messages',
                 'notifications',
                 'hiring_requests',
@@ -61,7 +61,7 @@ class EmptyDatabaseController extends Controller
             // Step 4: Show final status
             echo "\n📊 Final Database Status:\n";
             
-            $tables = ['students', 'employers', 'jobs', 'services', 'applications', 'hiring_requests'];
+            $tables = ['students', 'employers', 'jobs', 'services', 'applications', 'hiring_requests', 'reviews'];
             
             foreach ($tables as $table) {
                 try {
