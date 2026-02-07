@@ -19,6 +19,7 @@ use App\Http\Controllers\StudentFixController;
 use App\Http\Controllers\PublicController;
 use App\Http\Controllers\ResetController;
 use App\Http\Controllers\VerificationController;
+use App\Http\Controllers\SequenceFixController;
 
 // Health check
 Route::get('/health', function () {
@@ -129,4 +130,7 @@ Route::get('/seed-from-zero', [ResetController::class, 'seedFromZero']);
 // Verification routes
 Route::get('/get-verification-code', [VerificationController::class, 'getVerificationCode']);
 Route::post('/send-verification-code', [VerificationController::class, 'sendVerificationCode']);
+
+// Sequence fix route
+Route::get('/fix-sequences', [SequenceFixController::class, 'fixSequences']);
 Route::put('/applications/{id}/status', [ApplicationController::class, 'updateStatus']);
