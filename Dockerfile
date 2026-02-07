@@ -42,7 +42,8 @@ RUN cp .env.example .env && \
     sed -i 's/DB_USERNAME=root/DB_USERNAME=hedma4students_db_user/' .env && \
     sed -i 's/DB_PASSWORD=/DB_PASSWORD=1x2f71cA90zNhGmUy6owNMud3u4Wtqhf/' .env && \
     sed -i 's/SESSION_DRIVER=database/SESSION_DRIVER=file/' .env && \
-    sed -i 's/QUEUE_CONNECTION=database/QUEUE_CONNECTION=sync/' .env
+    sed -i 's/QUEUE_CONNECTION=database/QUEUE_CONNECTION=sync/' .env && \
+    sed -i 's/CACHE_STORE=database/CACHE_DRIVER=file/' .env
 
 # Copy composer file
 COPY composer.json ./
