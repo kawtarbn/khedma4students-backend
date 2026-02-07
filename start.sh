@@ -52,9 +52,17 @@ STUDENT_COUNT=$(php artisan tinker --execute="echo DB::table('students')->count(
 echo "Current student count: $STUDENT_COUNT"
 if [ "$STUDENT_COUNT" -eq 0 ] 2>/dev/null; then
     echo "Database is empty, seeding sample data..."
-    php seed_production.php
+    php artisan db:seed --class=DatabaseSeeder --force
 else
-    echo "Database already has data, skipping seeding"
+    echo "Database already has data, checking for jobs..."
+    JOB_COUNT=$(php artisan tinker --execute="echo DB::table('jobs')->count();" 2>/dev/null | tr -d '\r\n')
+    echo "Current job count: $JOB_COUNT"
+    if [ "$JOB_COUNT" -eq 0 ] 2>/dev/null; then
+        echo "No jobs found, running production seeder..."
+        php seed_production.php
+    else
+        echo "Database already has jobs, skipping seeding"
+    fi
 fi
 
 echo "Starting Laravel application..."
