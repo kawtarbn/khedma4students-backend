@@ -27,6 +27,7 @@ use App\Http\Controllers\DebugStudentsController;
 use App\Http\Controllers\ForceClearController;
 use App\Http\Controllers\OnDemandVerificationController;
 use App\Http\Controllers\EmailTestController;
+use App\Http\Controllers\DatabaseStatusController;
 
 // Health check
 Route::get('/health', function () {
@@ -164,4 +165,7 @@ Route::get('/get-latest-verification-code', [OnDemandVerificationController::cla
 // Email test routes
 Route::post('/test-email', [EmailTestController::class, 'testEmail']);
 Route::get('/check-mail-config', [EmailTestController::class, 'checkMailConfig']);
+
+// Database status route
+Route::get('/database-status', [DatabaseStatusController::class, 'getDatabaseStatus']);
 Route::put('/applications/{id}/status', [ApplicationController::class, 'updateStatus']);
