@@ -63,6 +63,9 @@ Route::get('/run-migrations', function () {
 // Manual seeder route
 Route::get('/run-seeders', function () {
     try {
+        // Set timeout to prevent hanging
+        set_time_limit(30);
+        
         \Artisan::call('db:seed', ['--force' => true]);
         return response()->json([
             'success' => true,
@@ -73,6 +76,49 @@ Route::get('/run-seeders', function () {
         return response()->json([
             'success' => false,
             'message' => 'Seeders failed',
+            'error' => $e->getMessage()
+        ], 500);
+    }
+});
+
+// Simple seeder route (basic data only)
+Route::get('/run-simple-seeders', function () {
+    try {
+        set_time_limit(10);
+        
+        // Create basic test student
+        \DB::table('students')->insert([
+            'full_name' => 'Test Student',
+            'email' => 'test@example.com',
+            'password' => \Hash::make('password123'),
+            'university' => 'Test University',
+            'city' => 'Test City',
+            'email_verified_at' => now(),
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+        
+        // Create basic test employer
+        \DB::table('employers')->insert([
+            'company_name' => 'Test Company',
+            'email' => 'company@example.com',
+            'password' => \Hash::make('password123'),
+            'industry' => 'Technology',
+            'city' => 'Test City',
+            'email_verified_at' => now(),
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+        
+        return response()->json([
+            'success' => true,
+            'message' => 'Simple seeders completed successfully',
+            'data' => 'Created 1 student and 1 employer'
+        ]);
+    } catch (\Exception $e) {
+        return response()->json([
+            'success' => false,
+            'message' => 'Simple seeders failed',
             'error' => $e->getMessage()
         ], 500);
     }
