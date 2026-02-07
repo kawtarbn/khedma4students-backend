@@ -12,8 +12,8 @@ class SuccessStoriesTableSeeder extends Seeder
         // Clear existing success stories first
         DB::table('success_stories')->delete();
         
-        // Reset auto-increment
-        DB::statement('ALTER TABLE success_stories AUTO_INCREMENT = 1');
+        // Reset auto-increment (PostgreSQL syntax)
+        DB::statement('ALTER TABLE success_stories ALTER COLUMN id RESTART WITH 1');
 
         $successStories = [
             [
