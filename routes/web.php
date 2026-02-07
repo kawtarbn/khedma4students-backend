@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\DB;
 
 // Debug route (no /api prefix). Helps confirm the backend instance.
 Route::get('/ping', function () {
@@ -11,6 +12,25 @@ Route::get('/ping', function () {
         'student_file_exists' => file_exists(app_path('Models/Student.php')),
         'student_class_autoloads' => class_exists(\App\Models\Student::class),
     ]);
+});
+
+// Database connection test
+Route::get('/test-db', function () {
+    try {
+        DB::connection()->getPdo();
+        return response()->json([
+            'status' => 'database_connected',
+            'connection' => config('database.default'),
+            'timestamp' => now()
+        ]);
+    } catch (\Exception $e) {
+        return response()->json([
+            'status' => 'database_error',
+            'error' => $e->getMessage(),
+            'connection' => config('database.default'),
+            'timestamp' => now()
+        ], 500);
+    }
 });
 
 // Email preview route for development
