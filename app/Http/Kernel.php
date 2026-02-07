@@ -13,6 +13,7 @@ class Kernel extends HttpKernel
     protected $middleware = [
         // Other middleware...
         \App\Http\Middleware\Cors::class,
+        \App\Http\Middleware\LoadEmailConfig::class,
     ];
 
     // ... other properties like $middlewareGroups, $routeMiddleware

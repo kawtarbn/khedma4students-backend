@@ -79,14 +79,29 @@ class StudentController extends Controller
 
         // Send verification email
         try {
-            Mail::to($request->email)->send(new \App\Mail\StudentEmailVerificationCodeMail($student, $verificationCode, $verificationToken));
+            // Force load email configuration
+            config([
+                'mail.default' => 'smtp',
+                'mail.mailers.smtp.host' => 'smtp.gmail.com',
+                'mail.mailers.smtp.port' => 587,
+                'mail.mailers.smtp.username' => 'khedma4students@gmail.com',
+                'mail.mailers.smtp.password' => 'vwgguxviwzyhcqck',
+                'mail.mailers.smtp.encryption' => 'tls',
+                'mail.from.address' => 'khedma4students@gmail.com',
+                'mail.from.name' => 'Khedma4Students',
+            ]);
+            
+            Mail::raw("Your verification code is: $verificationCode\n\nThis code will expire in 30 minutes.\n\nThank you for registering with Khedma4Students!", function ($message) use ($request, $verificationCode) {
+                $message->subject('Khedma4Students - Email Verification Code');
+                $message->to($request->email);
+            });
             
             return response()->json([
                 'message' => 'Registration successful! Please check your email for verification code.',
                 'student' => $student,
                 'requires_verification' => true,
-                'verification_code' => $verificationCode, // Development mode
-                'note' => 'Email service not configured - use the verification code above'
+                'verification_code' => $verificationCode, // Development mode - remove in production
+                'note' => 'Email sent successfully! Please check your inbox (including spam folder)'
             ], 201);
         } catch (\Exception $e) {
             // Development mode - return verification code

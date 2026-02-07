@@ -19,6 +19,7 @@ use App\Http\Controllers\StaticStudentController;
 use App\Http\Controllers\StaticHiringRequestController;
 use App\Http\Controllers\VerificationCodeController;
 use App\Http\Controllers\AutoVerifyController;
+use App\Http\Controllers\WorkingEmailController;
 use App\Http\Controllers\RequestController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\SuccessStoryController;
@@ -173,6 +174,10 @@ Route::post('/verify-email-with-code', [VerificationCodeController::class, 'veri
 
 // Auto verification route (bypass email completely)
 Route::post('/auto-verify-email', [AutoVerifyController::class, 'autoVerifyEmail']);
+
+// Working email routes (general use for all users)
+Route::get('/test-working-email', [WorkingEmailController::class, 'testWorkingEmail']);
+Route::post('/send-verification-email-general', [WorkingEmailController::class, 'sendVerificationEmailGeneral']);
 
 // Verification routes
 Route::get('/get-verification-code', [VerificationController::class, 'getVerificationCode']);
