@@ -20,6 +20,7 @@ use App\Http\Controllers\PublicController;
 use App\Http\Controllers\ResetController;
 use App\Http\Controllers\VerificationController;
 use App\Http\Controllers\SequenceFixController;
+use App\Http\Controllers\RequestDebugController;
 
 // Health check
 Route::get('/health', function () {
@@ -133,4 +134,8 @@ Route::post('/send-verification-code', [VerificationController::class, 'sendVeri
 
 // Sequence fix route
 Route::get('/fix-sequences', [SequenceFixController::class, 'fixSequences']);
+
+// Request debug routes
+Route::post('/debug-request', [RequestDebugController::class, 'debugRequest']);
+Route::get('/debug-request-info', [RequestDebugController::class, 'testRequest']);
 Route::put('/applications/{id}/status', [ApplicationController::class, 'updateStatus']);
