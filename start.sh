@@ -54,12 +54,13 @@ if [ "$STUDENT_COUNT" -eq 0 ] 2>/dev/null; then
     echo "Database is empty, seeding sample data..."
     php artisan db:seed --class=DatabaseSeeder --force
 else
-    echo "Database already has data, checking for jobs..."
+    echo "Database already has students, skipping student seeding"
+    echo "Checking for jobs..."
     JOB_COUNT=$(php artisan tinker --execute="echo DB::table('jobs')->count();" 2>/dev/null | tr -d '\r\n')
     echo "Current job count: $JOB_COUNT"
     if [ "$JOB_COUNT" -eq 0 ] 2>/dev/null; then
-        echo "No jobs found, running production seeder..."
-        php seed_production.php
+        echo "No jobs found, running job seeder only..."
+        php artisan db:seed --class=JobSeeder --force
     else
         echo "Database already has jobs, skipping seeding"
     fi
