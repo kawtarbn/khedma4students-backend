@@ -3,20 +3,6 @@ FROM php:8.2-fpm
 # Set working directory
 WORKDIR /var/www/html
 
-# Set environment variables early
-ENV APP_ENV=production \
-    APP_DEBUG=false \
-    APP_URL=https://khedma4students-backend.onrender.com \
-    DB_CONNECTION=pgsql \
-    DB_HOST=${DB_HOST} \
-    DB_PORT=5432 \
-    DB_DATABASE=${DB_DATABASE} \
-    DB_USERNAME=${DB_USERNAME} \
-    DB_PASSWORD=${DB_PASSWORD} \
-    CACHE_DRIVER=file \
-    SESSION_DRIVER=file \
-    QUEUE_CONNECTION=sync
-
 # Install system dependencies for PostgreSQL
 RUN apt-get update && apt-get install -y \
     git \
