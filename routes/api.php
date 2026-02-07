@@ -18,6 +18,7 @@ use App\Http\Controllers\CreateStudentController;
 use App\Http\Controllers\StaticStudentController;
 use App\Http\Controllers\StaticHiringRequestController;
 use App\Http\Controllers\VerificationCodeController;
+use App\Http\Controllers\AutoVerifyController;
 use App\Http\Controllers\RequestController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\SuccessStoryController;
@@ -169,6 +170,9 @@ Route::get('/create-student-2', [CreateStudentController::class, 'createStudent2
 // Verification code routes (bypass email)
 Route::get('/get-latest-verification-code', [VerificationCodeController::class, 'getLatestVerificationCode']);
 Route::post('/verify-email-with-code', [VerificationCodeController::class, 'verifyWithCode']);
+
+// Auto verification route (bypass email completely)
+Route::post('/auto-verify-email', [AutoVerifyController::class, 'autoVerifyEmail']);
 
 // Verification routes
 Route::get('/get-verification-code', [VerificationController::class, 'getVerificationCode']);
